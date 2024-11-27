@@ -20,4 +20,4 @@ Below are the software configurations used for this benchmark evaluation:
     **psutil**: {5.9.8}
     **zarr**: {2.16.1}
 
-A detailed explanation of the evaluation is provided in the Research_Project report which contains the benchamrking graphs for various configurations.
+A detailed explanation of the evaluation is provided in the Research_Project report which contains the benchamrking graphs for various configurations. The settings file used for the benchmarking contains different configuration parameters required for the implementation such as using different compression techniques along with different compression levels, blocksize, shuffle parameters, chunk size and different advanced indexing techniques for the library. This benchmarking is required for an alternative approach to store geospatial data instead of conventional storage systems.
