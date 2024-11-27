@@ -3,3 +3,21 @@ This Research Project report encapsulates a detailed overview of the performance
 Zarr is a storage file format that is specified by .zarr extension. It is used to store large dataset using multidimensional arrays. It is useful to store data from Life Science/climate forecasts domain which contains data upto 7 dimensions. Zarr provides a very intelligent and efficient way to store data in memory by the method of chunks. This chunks can be defined by the user at the time of creation or Zarr can by itself define the chunks based on the dataset structure. This chunks are stored individually in memory in a compressed way. And when a particular data is accessed, Zarr loads up the chunk where the data may reside instead of loading up the whole dataset into the memory which improves the access speed as well.
 There are multiple compressors available in for the implementation in Zarr. It uses a library called \textit{numcodecs} which contains various compressor classes such as Blosc, LZ4, Zstd, Zlib, LZMA, GZip and various others. For this project, blosc framework \cite{zeyen2017cosmological} is selected for the benchmarking since it is the default compressor provided in the Zarr library. Now different algorithms are used inside blosc for the benchmarking evaluation such as lz4, lz4hc, zlib etc. Now all these algorithms requires certain parameters for creating a blosc compressor object.
 Chunking can significantly reduce the access time and increase the efficiency for storing the data in memory. But to attain an optimal chunking strategy is dependent of data and there is no generic optimal strategy for Zarr. Although there has been a literature available which discussed about some optimal chunking strategy using geometrical programming and steep descent optimization method. There is a way to configure the chunks while creating a Zarr array. Now it depends on the data access patterns to set the chunking strategies. The chunking can be done on various dimensions. As per the Zarr documentation, 1 Megabyte uncompressed size seems to provide better performance. So if there is a data of 2 dimensions and there is only need to access the first dimension then only the second dimension can be chunked. 
+Data that is used for the compressor benchmarking contains 1000000000 elements with shape 1000*1000*1000 and contains \textit{Integer} data type elements. For the experiment purpose the fill value is made with elements from 0 to 99999999 for the entire dataset using the \textit{arange} function of \textit{numpy} library in Python. 
+From this experiment, the read time, cpu usage percentage and Disk Read counts metrics are used for evaluation. For the compressor algorithm benchmark evaluation, a data of 1000000000 elements is chosen and also the data is filled using \textit{arrange} function in Python for the whole data set. For the compression algorithm benchmarking and analyse the impact of different configuration, mean values are considered of 20 simultaneous execution of the each configuration and data is plotted accordingly. To achieve this, \textit{xrange} is used to perform the iteration. Read time is plotted as a mean of 20 simultaneous executions. The system that is used for this benchmark evaluation has the following configuration:
+    **OS**: {MAC OS Sonoma 14.3.1}
+    **Chip**: {Apple M1 8 cores (4 performance and 4 efficiency)}
+    **RAM**: {16GB LPDDR4 (Hynix)}
+    **DISK**: {SSD(NVMExpress Model APPLE SSD AP1024Q) with TRIM support}
+
+Below are the software configurations used for this benchmark evaluation:
+    **Python**: {3.12.1 x64 bit architecture}
+    **IDE**: {Visual Studio Code 1.77.1(Universal)}
+    **Numpy**: {1.26.3}
+    **openpyxl**: {3.1.2}
+    **numcodecs**: 0.12.1
+    **matplotlib**: 3.8.2
+    **psutil**: {5.9.8}
+    **zarr**: {2.16.1}
+
+A detailed explanation of the evaluation is provided in the Research_Project report which contains the benchamrking graphs for various configurations.
